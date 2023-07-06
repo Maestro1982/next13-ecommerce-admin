@@ -25,8 +25,6 @@ import { Input } from '@/components/ui/input';
 import { AlertModal } from '@/components/modals/alert-modal';
 import ImageUpload from '@/components/ui/image-upload';
 
-import { useOrigin } from '@/hooks/use-origin';
-
 const formSchema = z.object({
   label: z.string().min(1),
   imageUrl: z.string().min(1),
@@ -43,7 +41,6 @@ export const BillboardForm: React.FC<BillboardFormStoreProps> = ({
 }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,6 +73,7 @@ export const BillboardForm: React.FC<BillboardFormStoreProps> = ({
       }
 
       router.refresh();
+      router.push(`/${params.storeId}/billboards`);
       toast.success(toastMessage);
     } catch (error) {
       toast.error('Something went wrong.');
