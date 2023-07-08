@@ -45,7 +45,7 @@ export const BillboardForm: React.FC<BillboardFormStoreProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const title = initialData ? 'Edit billboard' : 'Create a billboard';
+  const title = initialData ? 'Edit billboard' : 'Create billboard';
   const description = initialData ? 'Edit a billboard' : 'Add a new billboard';
   const toastMessage = initialData
     ? 'Billboard successfully updated.'
@@ -89,7 +89,7 @@ export const BillboardForm: React.FC<BillboardFormStoreProps> = ({
         `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push('/');
+      router.push(`/${params.storeId}/billboards`);
       toast.success('Billboard deleted successfully.');
     } catch (error) {
       toast.error(
@@ -170,7 +170,6 @@ export const BillboardForm: React.FC<BillboardFormStoreProps> = ({
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
