@@ -26,18 +26,18 @@ import { AlertModal } from '@/components/modals/alert-modal';
 
 const formSchema = z.object({
   name: z.string().min(1),
-  value: z.string().min(4).regex(/^#/, {
+  value: z.string().min(4).max(9).regex(/^#/, {
     message: 'String must be a valid hex code',
   }),
 });
 
 type ColorFormValues = z.infer<typeof formSchema>;
 
-interface ColorFormStoreProps {
+interface ColorFormProps {
   initialData: Color | null;
 }
 
-export const ColorForm: React.FC<ColorFormStoreProps> = ({ initialData }) => {
+export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
 
@@ -55,7 +55,6 @@ export const ColorForm: React.FC<ColorFormStoreProps> = ({ initialData }) => {
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: '',
-      value: '',
     },
   });
 
