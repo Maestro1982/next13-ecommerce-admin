@@ -69,6 +69,7 @@ export const ProductForm: React.FC<ProductFormStoreProps> = ({
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [price, setPrice] = useState(0);
 
   const title = initialData ? 'Edit product' : 'Create product';
   const description = initialData ? 'Edit a product' : 'Add a new product';
